@@ -4,7 +4,7 @@
  *
  * @package Simple Package
  * @subpackage SimpleLeads
- * @since 1.0.0
+ * @since 1.0.1
  */
 
 /*===========================================================================================================================*/
@@ -89,11 +89,13 @@ add_action( 'init', 'simple_lead_add_statuses' );
  */
 function simple_lead_new_status_list() {
     global $post;
+
     $new_selected = '';
     $payment_selected = '';
     $performed_selected = '';
     $finished_selected = '';
     $unfinished_selected = '';
+
     if ( 'simple_lead' == $post->post_type ) {
 
         if ( 'new' == $post->post_status ) {
@@ -503,7 +505,7 @@ function simple_lead_new_lead() {
         }
 
         $search = ['{id}', '{name}', '{phone}', '{date}', '{page}', '{browser}', '{ip}'];
-        $replace = [$post_id, $arrdata['leadname'], $arrdata['leadphone'], date("d-m-Y H:i"), $arrdata['leadpage'], $arrdata['leadbrowser'], $arrdata['leadip']];
+        $replace = [$post_id, $arrdata['leadname'], $arrdata['leadphone'], current_time("d-m-Y H:i"), $arrdata['leadpage'], $arrdata['leadbrowser'], $arrdata['leadip']];
         $message_text = htmlspecialchars_decode(stripcslashes(str_replace($search, $replace, $message)));
 
         $notif_email_title = empty($notif_email_title) ? 'Новая заявка на сайте '.$domainName : str_replace($search, $replace, $notif_email_title);
