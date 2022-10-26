@@ -2,8 +2,9 @@
 /**
  * Functions of plugine
  *
- * @package SimpleLeads
- * @since 1.0.0
+ * @package Simple Tools
+ * @subpackage SimpleLeads
+ * @since 1.0.1
  */
 
 /*===========================================================================================================================*/
@@ -35,7 +36,6 @@ function simple_lead_validation( $fields ) {
  * @param string telephone number, exempe: +7 (777) 165-51-28
  * @return string, exemple: 77771655128
  */
-function simple_lead_phone_processing( $phone ) {
-	$phone = str_replace( [' ', '(', ')', '-'], '', $phone );
-	return $phone;
+function simple_lead_phone_processing($phone) {
+    return preg_replace('/[^0-9\+]+/', '', $phone);
 }
